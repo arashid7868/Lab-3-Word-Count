@@ -61,9 +61,34 @@ class WordAnalyzer:
         for word in sorted(self.__frequencies):
             print(f"{word:<8} :: {self.__frequencies[word]}")
 
-
 if __name__ == "__main__":
-    analyzer = WordAnalyzer("princess_mars.txt")
+    files = {
+        "1": "princess_mars.txt",
+        "2": "Tarzan.txt",
+        "3": "treasure_island.txt",
+        "4": "monte_cristo.txt",
+    }
 
-    if analyzer.process_file():
-        analyzer.print_report()
+    while True:
+        print("\n--- Word Analyzer ---")
+        print("Please select a file to analyze:")
+        print("1. Princess Mars")
+        print("2. Tarzan")
+        print("3. Treasure Island")
+        print("4. Monte Cristo")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "5":
+            print("Goodbye!")
+            break
+
+        if choice not in files:
+            print("Invalid choice. Please select 1-5.")
+            continue
+
+        analyzer = WordAnalyzer(files[choice])
+
+        if analyzer.process_file():
+            analyzer.print_report()
